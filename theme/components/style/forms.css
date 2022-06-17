@@ -1,0 +1,34 @@
+form,
+fieldset {
+    .field {
+        @apply my-3;
+    }
+
+    label {
+        @apply mb-2 block text-secondary-darker;
+    }
+
+    .field.choice {
+        @apply flex items-center
+    }
+
+    .field.choice input {
+        @apply mr-4
+    }
+
+    .field.choice label {
+        @apply mb-0
+    }
+
+    legend {
+        @apply text-primary text-xl mb-3
+    }
+
+    legend + br {
+        @apply hidden
+    }
+}
+
+fieldset ~ fieldset {
+    @apply mt-8;
+}
