@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="bss_megamenu_items" resource="default" engine="innodb" comment="bss_megamenu_items">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="int" name="menu_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Menu ID"/>
+        <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" comment="Status"/>
+        <column xsi:type="int" name="type" padding="10" unsigned="true" nullable="false" identity="false" comment="Type"/>
+        <column xsi:type="varchar" name="label" nullable="false" length="50" default="" comment="Label"/>
+        <column xsi:type="varchar" name="block_top" nullable="false" length="200" default="" comment="Blog Top"/>
+        <column xsi:type="varchar" name="block_left" nullable="false" length="200" default="" comment="Blog Left"/>
+        <column xsi:type="varchar" name="block_right" nullable="false" length="200" default="" comment="Block Right"/>
+        <column xsi:type="varchar" name="block_bottom" nullable="false" length="200" default="" comment="Block Bottom"/>
+        <column xsi:type="int" name="width" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Width"/>
+        <column xsi:type="varchar" name="block_content" nullable="false" length="200" default="" comment="Add Block Content"/>
+        <column xsi:type="int" name="url_type" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Ad URL Type"/>
+        <column xsi:type="varchar" name="custom_link" nullable="false" length="200" default="" comment="Add Custom Link"/>
+        <column xsi:type="int" name="category_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Ad Category Id"/>
+        <column xsi:type="text" name="store_id" nullable="true" comment="Store ID" />
+        <column xsi:type="text" name="custom_css" nullable="true" comment="Add Custom Css"/>
+        <column xsi:type="text" name="content" nullable="false" comment="Content"/>
+        <column xsi:type="int" name="category_store_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Category Store"/>
+        <column xsi:type="int" name="priority" padding="11" unsigned="false" nullable="true" identity="false" comment="Priority"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+            <column name="id"/>
+        </constraint>
+        <index referenceId="BSS_MEGAMENU_ITEMS_ID" indexType="btree">
+            <column name="id"/>
+            <column name="id"/>
+        </index>
+    </table>
+    <table name="bss_megamenu_stores" resource="default" engine="innodb" comment="bss_megamenu_stores">
+        <column xsi:type="int" name="category_store_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="225" default="" comment="Label"/>
+        <column xsi:type="varchar" name="store_id" nullable="false" length="255" default="" comment="Create categories for store"/>
+        <column xsi:type="int" name="priority" padding="10" unsigned="true" nullable="true" identity="false" comment="Priority"/>
+        <column xsi:type="mediumtext" name="value" nullable="false" comment="value"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="category_store_id"/>
+        </constraint>
+        <index referenceId="BSS_MEGAMENU_STORES_CATEGORY_STORE_ID" indexType="btree">
+            <column name="category_store_id"/>
+        </index>
+    </table>
+    <table name="bss_megamenu_content" resource="default" engine="innodb" comment="bss_megamenu_content">
+        <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="text" name="content" nullable="false" comment="Content"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+</schema>

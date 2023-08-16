@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_MegaMenu
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Bss_MegaMenu::css/jstree.min.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Framework\View\Element\Template" name="category3.store.switcher" template="Bss_MegaMenu::category/top.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="left">
+            <block class="Bss\MegaMenu\Block\Adminhtml\Category\Tree" name="megamenu.tree" template="Bss_MegaMenu::category/tree.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Bss\MegaMenu\Block\Adminhtml\Category\View" name="bss_blog_comment_view"/>
+            <block class="Bss\MegaMenu\Block\Adminhtml\Category\Content" name="megamenu.content" template="Bss_MegaMenu::category/content.phtml"/>
+        </referenceContainer>
+    </body>
+</page>
