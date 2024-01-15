@@ -1,0 +1,36 @@
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_AdvancedContact
+ * @copyright Copyright (C) 2020 Magezon (https://www.magezon.com/)
+ */
+-->
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget class="Magezon\AdvancedContact\Block\Widget\ContactForm" id="mgz_contact_form">
+        <label>Magezon Contact Form</label>
+        <description>Magezon advanced contact form</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
+                <label>Title</label>
+            </parameter>
+            <parameter name="gg_captcha" xsi:type="select" visible="true" required="true" sort_order="20">
+                <label translate="true">Enable Google captcha</label>
+                <options>
+                    <option name="0" value="0">
+                         <label>No</label>
+                    </option>
+                    <option name="1" value="1">
+                         <label>Yes</label>
+                    </option>
+                </options>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

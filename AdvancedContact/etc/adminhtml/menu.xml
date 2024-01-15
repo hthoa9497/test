@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license/.
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_AdvancedContact
+ * @copyright Copyright (C) 2020 Magezon (https://www.magezon.com/)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+  		<add id="Magezon_AdvancedContact::menu" title="Advanced Contact Form" translate="title" module="Magezon_AdvancedContact" sortOrder="10" resource="Magezon_AdvancedContact::contact" parent="Magezon_Core::extensions" />
+  		<add id="Magezon_AdvancedContact::contact_list" title="Contacts" translate="title" module="Magezon_AdvancedContact" sortOrder="10" parent="Magezon_AdvancedContact::menu" action="advancedcontactform/contact/" resource="Magezon_AdvancedContact::contact" />
+  		<add id="Magezon_AdvancedContact::configuration" title="Settings" translate="title" module="Magezon_AdvancedContact" sortOrder="20" parent="Magezon_AdvancedContact::menu" action="admin/system_config/edit/section/advancedcontact" resource="Magezon_AdvancedContact::settings" />
+    </menu>
+</config>
