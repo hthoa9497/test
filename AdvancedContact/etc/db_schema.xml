@@ -20,6 +20,7 @@
                 />
         <column xsi:type="varchar" name="name" nullable="false"/>
         <column xsi:type="varchar" name="email" nullable="false"/>
+        <column xsi:type="varchar" name="attachment" nullable="true"/>
         <column xsi:type="int" name="telephone" nullable="false"/>
         <column xsi:type="mediumtext" name="comment" nullable="false"/>
         <column xsi:type="int" name="is_active" default="0" nullable="false"/>

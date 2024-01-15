@@ -18,6 +18,7 @@ use Magento\Framework\Translate\Inline\StateInterface;
 use Magento\Framework\Escaper;
 use Magento\Framework\Mail\Template\TransportBuilder;
 use Magento\Contact\Model\ConfigInterface;
+use Magezon\AdvancedContact\Helper\Data;
 
 class Email extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -47,18 +48,25 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
     protected $contactsConfig;
 
     /**
+     * @var Data 
+     */
+    protected $helperData;
+
+    /**
      * @param \Magento\Backend\Block\Template\Context  $context
      * @param \Magento\Framework\Translate\Inline\StateInterface  $inlineTranslation
      * @param \Magento\Contact\Model\ConfigInterface  $contactsConfig
      * @param \Magento\Framework\Escaper $escaper
      * @param \Magento\Framework\Mail\Template\TransportBuilder $transportBuilder
+     * @param Data $helperData
      */
     public function __construct(
         Context $context,
         ConfigInterface $contactsConfig,
         StateInterface $inlineTranslation,
         Escaper $escaper,
-        TransportBuilder $transportBuilder
+        TransportBuilder $transportBuilder,
+        Data $helperData
     ) {
         parent::__construct($context);
         $this->logger = $context->getLogger();
@@ -66,6 +74,7 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
         $this->inlineTranslation = $inlineTranslation;
         $this->escaper = $escaper;
         $this->transportBuilder = $transportBuilder;
+        $this->helperData = $helperData;
     }
 
     /**
@@ -73,9 +82,10 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
      * @param $dataRq
      * @param $nameSender
      */
-    public function sendEmail($dataRq, $nameSender)
+    public function sendEmail($dataRq, $nameSender, $storeId)
     {
         try {
+            $emailTemplate = $this->helperData->getReplyEmailTemplate();
             $emailRecipient = $this->contactsConfig->emailRecipient();
             $this->inlineTranslation->suspend();
             $sender = [
@@ -83,11 +93,11 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
                 'email' => $this->escaper->escapeHtml($emailRecipient),
             ];
             $transport = $this->transportBuilder
-                ->setTemplateIdentifier('email_reply_template')
+                ->setTemplateIdentifier($emailTemplate)
                 ->setTemplateOptions(
                     [
                         'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                        'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                        'store' => $storeId,
                     ]
                 )
                 ->setTemplateVars([
@@ -106,10 +116,10 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
 
     /**
      * Send Email Template action
-     * @param $templateId
+     * @param $id_temp
      * @param $toEmail
      */
-    public function sendEmailByTemplate ($templateId, $toEmail)
+    public function sendEmailByTemplate ($id_temp, $toEmail, $storeId = \Magento\Store\Model\Store::DEFAULT_STORE_ID)
     {
         try {
             $emailRecipient = $this->contactsConfig->emailRecipient();
@@ -119,9 +129,9 @@ class Email extends \Magento\Framework\App\Helper\AbstractHelper
             $storeScope = \Magento\Store\Model\ScopeInterface::SCOPE_STORE;
             $templateOptions = [
                 'area' => \Magento\Framework\App\Area::AREA_FRONTEND,
-                'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                'store' => $storeId,
             ];
-            $transport = $this->transportBuilder->setTemplateIdentifier($templateId, $storeScope)
+            $transport = $this->transportBuilder->setTemplateIdentifier($id_temp, $storeScope)
                 ->setTemplateOptions($templateOptions)
                 ->setTemplateVars([])
                 ->setFrom($from)

@@ -24,6 +24,9 @@ class Contact extends AbstractModel implements IdentityInterface
     const STATUS_COLOSED = 3;
     const STATUS_ANSWERED = 1;
     const STATUS_PENDING  = 0;
+    const ATTACHMENT_UPLOAD_DIR = 'contact/attachment';
+    const ALLOWED_FILE_TYPES = ['image/jpeg', 'image/jpg', 'image/gif', 'image/png', 'application/pdf'];
+    const MAX_FILE_UPLOAD_SIZE = (5*1024*1024) - 2335; // 5 MB - ~2.3Kb text field
 
     /**
      * @var string

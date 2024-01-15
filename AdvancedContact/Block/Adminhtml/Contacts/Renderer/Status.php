@@ -14,6 +14,8 @@
 
 namespace Magezon\AdvancedContact\Block\Adminhtml\Contacts\Renderer;
 
+use Magento\Framework\View\Element\UiComponent\ContextInterface;
+use Magento\Framework\View\Element\UiComponentFactory;
 use Magento\Ui\Component\Listing\Columns\Column;
 
 class Status extends Column
@@ -21,6 +23,21 @@ class Status extends Column
     /** Status contact */
     const STATUS_ANSWERED = 2;
     const STATUS_CLOSED = 3;
+
+    /**
+     * @param ContextInterface $context
+     * @param UiComponentFactory $uiComponentFactory
+     * @param array $components
+     * @param array $data
+     */
+    public function __construct(
+        ContextInterface $context,
+        UiComponentFactory $uiComponentFactory,
+        array $components = [],
+        array $data = []
+    ) {
+        parent::__construct($context, $uiComponentFactory, $components, $data);
+    }
 
     /**
      * Prepare Data Source

@@ -23,6 +23,9 @@
                 <enabled>1</enabled>
                 <email_template>advancedcontact_autoresponder_email_template</email_template>
             </autoresponder>
+            <replying_mail>
+                <email_template>advancedcontact_replying_mail_email_template</email_template>
+            </replying_mail>
         </advancedcontact>
     </default>
 </config>

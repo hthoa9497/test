@@ -145,11 +145,12 @@
                 </item>
             </argument>
         </column>
-        <column name="telephone">
+
+        <column name="attachment" class="Magezon\AdvancedContact\Ui\Component\Listing\Column\Attachment">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">textRange</item>
-                    <item name="label" xsi:type="string" translate="true">Telephone</item>
+                    <item name="label" xsi:type="string" translate="true">Attachment</item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
                 </item>
             </argument>
         </column>

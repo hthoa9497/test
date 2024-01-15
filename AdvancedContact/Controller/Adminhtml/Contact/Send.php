@@ -18,7 +18,11 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magezon\AdvancedContact\Model\ContactFactory;
 use Magezon\AdvancedContact\Model\EmailFactory;
+use Magezon\AdvancedContact\Helper\Data;
 
+/**
+ * Class Send
+ */
 class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App\Action\HttpPostActionInterface
 {
     /**
@@ -36,23 +40,31 @@ class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App
     /**
      * @var ContactFactory
      */
-    protected $contactFactory;
+    protected $advancedContactFactory;
+
+    /**
+     * @var Data 
+     */
+    protected $helperData;
 
     /**
      * Send constructor.
      *
      * @param Context $context
-     * @param ContactFactory $contactFactory
+     * @param ContactFactory $advancedContactFactory
      * @param EmailFactory $emailFactory
+     * @param Data $helperData
      */
     public function __construct(
         Context $context,
-        ContactFactory $contactFactory,
-        EmailFactory $emailFactory
+        ContactFactory $advancedContactFactory,
+        EmailFactory $emailFactory,
+        Data $helperData
     ) {
         parent::__construct($context);
-        $this->contactFactory = $contactFactory;
+        $this->advancedContactFactory = $advancedContactFactory;
         $this->emailFactory = $emailFactory;
+        $this->helperData = $helperData;
     }
 
     /**
@@ -73,11 +85,13 @@ class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App
             $this->messageManager->addErrorMessage(__('Something is wrong with this field!'));
         } else {
             try {
-                $storeName = $this->getStoreName();
+//                $storeName = $this->getStoreName();
+                $sender = $this->helperData->getContactSenderName();
                 $email = $this->emailFactory->create();
-                $email->sendEmail($request, $storeName);
+                $storeId = $request['store_id'] ?? \Magento\Store\Model\Store::DEFAULT_STORE_ID;
+                $email->sendEmail($request, $sender, $storeId);
 
-                $model = $this->contactFactory->create();
+                $model = $this->advancedContactFactory->create();
                 $model->load($request['contact_id']);
                 $model->setData('is_active', $model::STATUS_ANSWERED);
                 $model->save();
