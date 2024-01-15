@@ -1,0 +1,58 @@
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.mz_loadfr {
+	 display: none;
+
+  .mz_loadfr_bg {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    background: #000;
+    opacity: 0.4;
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+  }
+
+  .loading {
+    display: flex;
+    z-index: 999;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    max-width: 200px;
+  }
+
+  .circle {
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-radius: 50%;
+    margin: 3px;
+    animation: jump 0.5s ease-in infinite;
+
+    &:nth-of-type(1) {
+      background-color: rgb(20, 101, 106);
+    }
+
+    &:nth-of-type(2) {
+      animation-delay: 0.1s;
+      background-color: rgb(250, 114, 104);
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 0.2s;
+      background-color: rgb(148, 219, 223);
+    }
+  }
+
+}

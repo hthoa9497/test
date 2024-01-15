@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magezon
+ *
+ * This source file is subject to the Magezon Software License, which is available at https://www.magezon.com/license
+ * Do not edit or add to this file if you wish to upgrade the to newer versions in the future.
+ * If you wish to customize this module for your needs.
+ * Please refer to https://www.magezon.com for more information.
+ *
+ * @category  Magezon
+ * @package   Magezon_AdvancedContact
+ * @copyright Copyright (C) 2020 Magezon (https://www.magezon.com)
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="advancedcontact" translate="label" sortOrder="10" type="text" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Advanced Contact Form</label>
+            <tab>magezon</tab>
+            <resource>Magezon_AdvancedContact::settings</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="version" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Current Version</label>
+                    <frontend_model>Magezon\AdvancedContact\Block\Adminhtml\Renderer\Config\Version</frontend_model>
+                </field>
+                <field id="enabled" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="icon_load" translate="label" type="Magento\Config\Block\System\Config\Form\Field\File" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Icon Load Form</label>
+                    <backend_model>Magezon\AdvancedContact\Model\Config\Backend\UploadIcon</backend_model>
+                    <upload_dir config="system">advancedcontact/image</upload_dir>
+                    <comment><![CDATA[Allowed file types:  jpg, gif, png]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="autoresponder" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Auto-responder</label>
+                <field id="enabled" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="email_template" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                    <depends>
+                        <field id="advancedcontact/autoresponder/enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
