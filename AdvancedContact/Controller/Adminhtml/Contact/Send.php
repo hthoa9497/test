@@ -18,11 +18,7 @@ use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magezon\AdvancedContact\Model\ContactFactory;
 use Magezon\AdvancedContact\Model\EmailFactory;
-use Magezon\AdvancedContact\Helper\Data;
 
-/**
- * Class Send
- */
 class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App\Action\HttpPostActionInterface
 {
     /**
@@ -40,31 +36,23 @@ class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App
     /**
      * @var ContactFactory
      */
-    protected $advancedContactFactory;
-
-    /**
-     * @var Data 
-     */
-    protected $helperData;
+    protected $contactFactory;
 
     /**
      * Send constructor.
      *
      * @param Context $context
-     * @param ContactFactory $advancedContactFactory
+     * @param ContactFactory $contactFactory
      * @param EmailFactory $emailFactory
-     * @param Data $helperData
      */
     public function __construct(
         Context $context,
-        ContactFactory $advancedContactFactory,
-        EmailFactory $emailFactory,
-        Data $helperData
+        ContactFactory $contactFactory,
+        EmailFactory $emailFactory
     ) {
         parent::__construct($context);
-        $this->advancedContactFactory = $advancedContactFactory;
+        $this->contactFactory = $contactFactory;
         $this->emailFactory = $emailFactory;
-        $this->helperData = $helperData;
     }
 
     /**
@@ -85,13 +73,11 @@ class Send extends \Magento\Backend\App\Action implements \Magento\Framework\App
             $this->messageManager->addErrorMessage(__('Something is wrong with this field!'));
         } else {
             try {
-//                $storeName = $this->getStoreName();
-                $sender = $this->helperData->getContactSenderName();
+                $storeName = $this->getStoreName();
                 $email = $this->emailFactory->create();
-                $storeId = $request['store_id'] ?? \Magento\Store\Model\Store::DEFAULT_STORE_ID;
-                $email->sendEmail($request, $sender, $storeId);
+                $email->sendEmail($request, $storeName);
 
-                $model = $this->advancedContactFactory->create();
+                $model = $this->contactFactory->create();
                 $model->load($request['contact_id']);
                 $model->setData('is_active', $model::STATUS_ANSWERED);
                 $model->save();

@@ -36,14 +36,14 @@ class MassDelete extends Action implements HttpPostActionInterface
     protected $filter;
 
     /**
-     * @var AdvancedContactFactory
+     * @var collectionFactory
      */
     protected $collectionFactory;
 
     /**
      * @param Context $context
      * @param Filter $filter
-     * @param AdvancedContactFactory $advancedContactFactory
+     * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         Context $context,

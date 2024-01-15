@@ -31,7 +31,7 @@ class Edit extends Action implements HttpGetActionInterface
     /**
      * @var ContactFactory
      */
-    protected $advancedContactFactory;
+    protected $contactFactory;
 
     /**
      * @var Registry
@@ -42,18 +42,18 @@ class Edit extends Action implements HttpGetActionInterface
      * @param Context $context
      * @param PageFactory $resultPageFactory
      * @param Registry $registry
-     * @param ContactFactory $postFactory
+     * @param ContactFactory $contactFactory
      */
     public function __construct(
         Context $context,
         PageFactory $resultPageFactory,
         Registry $registry,
-        ContactFactory $advancedContactFactory
+        ContactFactory $contactFactory
     ) {
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
         $this->coreRegistry      = $registry;
-        $this->advancedContactFactory = $advancedContactFactory;
+        $this->contactFactory = $contactFactory;
     }
 
     /**
@@ -66,7 +66,7 @@ class Edit extends Action implements HttpGetActionInterface
     {
         $contactId = $this->getRequest()->getParam('contact_id');
 
-        $model = $this->advancedContactFactory->create();
+        $model = $this->contactFactory->create();
         $dataContact = $model->load($contactId);
         $this->coreRegistry->register('dataContact', $dataContact);
 

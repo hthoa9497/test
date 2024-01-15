@@ -17,10 +17,12 @@ namespace Magezon\AdvancedContact\Helper;
 use Magento\Framework\UrlInterface;
 use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\StoreManagerInterface;
-use Magento\Contact\Model\ConfigInterface;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
+    /**
+     * key google captcha
+     */
     const XML_PATH_PUBLIC_KEY = 'recaptcha_frontend/type_invisible/public_key';
 
     /**
@@ -111,24 +113,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getEmailTemplate()
     {
         return $this->getConfig('autoresponder/email_template');
-    }
-
-    /**
-     * Get reply email template
-     * @return string|null
-     */
-    public function getReplyEmailTemplate()
-    {
-        return $this->getConfig('replying_mail/email_template');
-    }
-
-    /**
-     * @return string
-     */
-    public function getContactSenderName()
-    {
-        $sender = $this->scopeConfig->getValue(ConfigInterface::XML_PATH_EMAIL_SENDER, \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
-        return $this->scopeConfig->getValue('trans_email/ident_' . $sender . '/name', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
     }
 
     /**

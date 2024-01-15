@@ -44,7 +44,7 @@ class MassAnswered extends Action implements HttpPostActionInterface
     /**
      * @param Context $context
      * @param Filter $filter
-     * @param CollectionFactory $advancedContactFactory
+     * @param CollectionFactory $collectionFactory
      */
     public function __construct(
         Context $context,

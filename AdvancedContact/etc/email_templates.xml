@@ -14,7 +14,6 @@
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
-<!--	<template id="email_reply_template" label="AdvancedContact Email Reply" file="email_reply_template.html" type="html" module="Magezon_AdvancedContact" area="frontend"/>-->
-    <template id="advancedcontact_autoresponder_email_template" label="AdvancedContact Email Auto Response" file="email_response_template.html" type="html" module="Magezon_AdvancedContact" area="frontend"/>
-	<template id="advancedcontact_replying_mail_email_template" label="AdvancedContact Email Reply" file="email_reply_template.html" type="html" module="Magezon_AdvancedContact" area="frontend"/>
+	<template id="email_reply_template" label="AdvancedContact Email Reply" file="email_reply_template.html" type="html" module="Magezon_AdvancedContact" area="frontend"/>
+	<template id="advancedcontact_autoresponder_email_template" label="AdvancedContact Email Auto Response" file="email_response_template.html" type="html" module="Magezon_AdvancedContact" area="frontend"/>
 </config>

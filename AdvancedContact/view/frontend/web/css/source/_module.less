@@ -1,3 +1,12 @@
+@keyframes jump {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
 .mz_loadfr {
 	 display: none;
 
@@ -30,28 +39,20 @@
     border-radius: 50%;
     margin: 3px;
     animation: jump 0.5s ease-in infinite;
+
+    &:nth-of-type(1) {
+      background-color: rgb(20, 101, 106);
+    }
+
+    &:nth-of-type(2) {
+      animation-delay: 0.1s;
+      background-color: rgb(250, 114, 104);
+    }
+
+    &:nth-of-type(3) {
+      animation-delay: 0.2s;
+      background-color: rgb(148, 219, 223);
+    }
   }
 
-  .circle:nth-of-type(1) {
-    background-color: rgb(20, 101, 106);
-  }
-
-  .circle:nth-of-type(2) {
-    animation-delay: 0.1s;
-    background-color: rgb(250, 114, 104);
-  }
-
-  .circle:nth-of-type(3) {
-    animation-delay: 0.2s;
-    background-color: rgb(148, 219, 223);
-  }
-}
-
-@keyframes jump {
-  0% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
 }

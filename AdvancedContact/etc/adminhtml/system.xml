@@ -13,7 +13,6 @@
  * @copyright Copyright (C) 2020 Magezon (https://www.magezon.com)
  */
 -->
-
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
@@ -38,7 +37,7 @@
                     <label>Icon Load Form</label>
                     <backend_model>Magezon\AdvancedContact\Model\Config\Backend\UploadIcon</backend_model>
                     <upload_dir config="system">advancedcontact/image</upload_dir>
-                    <comment><![CDATA[Allowed file types:  pdf, gif, png]]></comment>
+                    <comment><![CDATA[Allowed file types:  jpg, gif, png]]></comment>
                     <depends>
                         <field id="enabled">1</field>
                     </depends>
@@ -58,14 +57,6 @@
                     <depends>
                         <field id="advancedcontact/autoresponder/enabled">1</field>
                     </depends>
-                </field>
-            </group>
-            <group id="replying_mail" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Replying Mail</label>
-                <field id="email_template" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1"
-                       showInStore="1">
-                    <label>Email Template</label>
-                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
                 </field>
             </group>
         </section>

@@ -30,7 +30,6 @@ class ContactForm extends Template implements BlockInterface
         $contactHtml = $this->getLayout()->createBlock('Magento\Contact\Block\ContactForm')
         ->setTemplate('Magezon_AdvancedContact::contactform.phtml')
         ->setCaptchaStatus($this->getData('gg_captcha'));
-        $this->getLayout()->addContainer('form.additional.info', 'Form Additional Info');
         return $contactHtml->toHtml();
     }
 }

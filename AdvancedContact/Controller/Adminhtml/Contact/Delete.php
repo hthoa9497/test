@@ -31,18 +31,18 @@ class Delete extends Action implements HttpGetActionInterface
     /**
      * @var ContactFactory
      */
-    protected $advancedContactFactory;
+    protected $contactFactory;
 
     /**
      * @param Context $context
-     * @param ContactFactory $advancedContactFactory
+     * @param ContactFactory $contactFactory
      */
     public function __construct(
         Context $context,
-        ContactFactory $advancedContactFactory
+        ContactFactory $contactFactory
     ) {
         parent::__construct($context);
-        $this->advancedContactFactory = $advancedContactFactory;
+        $this->contactFactory = $contactFactory;
     }
 
     /**
@@ -55,7 +55,7 @@ class Delete extends Action implements HttpGetActionInterface
         $contactId = $this->getRequest()->getParam('contact_id');
 
         try {
-            $model = $this->advancedContactFactory->create();
+            $model = $this->contactFactory->create();
             $model->load($contactId)->delete();
             $this->messageManager->addSuccess(__('Delete contact success.'));
         } catch (\Exception $e) {
